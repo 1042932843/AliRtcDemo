@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/chart_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/black_alpha_5">
+
+        <TextView
+            android:id="@+id/tv_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:padding="@dimen/dimen_3"
+            android:text="@string/alirtc_out"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/title_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/alirtc_mode"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/title_size" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_title"
+        android:orientation="vertical">
+
+        <org.webrtc.sdk.SophonSurfaceView
+            android:id="@+id/sf_local_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chart_content_userlist"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/rl_title"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/tv_join_channel"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/alirtc_video_call_handsfree_shape"
+            android:gravity="center"
+            android:text="@string/alirtc_join_channel"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/labels_text_size" />
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/holo_light_gray"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alirtc_title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/title_size" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_channel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/dimen_50"
+        android:layout_marginEnd="@dimen/dimen_50"
+        android:background="@drawable/alirtc_bg_enter_shape"
+        android:hint="@string/alirtc_channel_hint"
+        android:inputType="number"
+        android:padding="@dimen/dimen_3"
+        android:textSize="@dimen/labels_text_size" />
+
+
+    <Button
+        android:id="@+id/bt_AuthInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_44"
+        android:layout_below="@+id/et_channel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:background="@drawable/alirtc_bg_enter_shape"
+        android:text="@string/alirtc_enter"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/labels_text_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_AuthInfo"
+        android:layout_marginTop="21dp"
+        android:gravity="center">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/start_audio_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开启音频采集" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/start_audio_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开启音频播放" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_sdk_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/labels_text_size" />
+
+</RelativeLayout>
