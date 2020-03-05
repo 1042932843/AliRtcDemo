@@ -22,6 +22,7 @@ import com.aliyun.rtcdemo.utils.DensityUtils;
 import com.aliyun.rtcdemo.utils.ParserJsonUtils;
 import com.aliyun.rtcdemo.utils.ThreadUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -86,12 +87,10 @@ public class AliRtcLoginActivity extends BaseActivity implements View.OnClickLis
 
     private void requestData() {
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("user", mUserName);
-        hashMap.put("room", mChannelId);
-        hashMap.put("passwd", "12345678");
         String base = AliRtcConstants.GSLB_TEST;
+        String url="https://api.dteacher-test.readboy.com/alirtc/app/v1/login?room="+mChannelId+"&user="+mUserName;
         showProgressDialog(true);
-        AliRtcWebUtils.getInstance().doGet(base, hashMap, new AliRtcWebUtils.HttpCallBack() {
+        AliRtcWebUtils.getInstance().doGet(url, null, new AliRtcWebUtils.HttpCallBack() {
             @Override
             public void onError(String error) {
                 ThreadUtils.runOnUiThread(new Runnable() {
@@ -105,6 +104,7 @@ public class AliRtcLoginActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onSuccess(String result) {
                 showProgressDialog(false);
+                //{"code":0,"data":{"gslb":["https://rgslb.rtc.aliyuncs.com"],"appid":"0qs634p6","turn":{"password":"0dcd55fd943d540a27308603c0f3a9d7d6a16712b141481916574b66ee3996d9","username":"89ae7abd2854962a?appid=0qs634p6&channel=123&nonce=AK-da4df4b5-a3ca-413e-8914-ae81c9db40e8&timestamp=1583543964"},"userid":"89ae7abd2854962a","nonce":"AK-da4df4b5-a3ca-413e-8914-ae81c9db40e8","token":"0dcd55fd943d540a27308603c0f3a9d7d6a16712b141481916574b66ee3996d9","timestamp":1583543964}}
                 RTCAuthInfo rtcAuthInfo = ParserJsonUtils.parserLoginJson(result);
                 if (rtcAuthInfo != null) {
                     showAuthInfo(rtcAuthInfo);

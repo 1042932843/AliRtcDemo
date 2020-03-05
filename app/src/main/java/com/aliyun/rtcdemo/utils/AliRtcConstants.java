@@ -10,7 +10,7 @@ public class AliRtcConstants {
     /**
      * 获取加入房间信息的url，用户自定义
      */
-    public static final String GSLB_TEST = "http://192.168.3.114:8080/app/v1/login";
+    public static final String GSLB_TEST = "https://api.dteacher-test.readboy.com/alirtc/app/v1/login";
 
     /**
      * 需要特殊处理的错误码，信令错误与心跳超时

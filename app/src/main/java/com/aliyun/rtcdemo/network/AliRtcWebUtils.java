@@ -134,7 +134,7 @@ public class AliRtcWebUtils {
             public void run() {
                 HttpURLConnection conn = null;
                 BufferedReader br = null;
-                String data = "";
+                StringBuilder data = new StringBuilder();
                 try {
                     conn = getConnection(new URL(getQueryUrl(url, params)), "GET", "*/*;charset=utf-8");
                     conn.setReadTimeout(5000);
@@ -144,9 +144,12 @@ public class AliRtcWebUtils {
                     Log.i(TAG, "code : " + stat);
                     if (stat == 200) {
                         br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                        data = br.readLine();
+                        String line = "";
+                        for (line = br.readLine(); line != null; line = br.readLine()) {
+                            data.append(line);
+                        }
                         Log.i(TAG, "data : " + data);
-                        String finalData = data;
+                        String finalData = data.toString();
                         ThreadUtils.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -155,9 +158,9 @@ public class AliRtcWebUtils {
                         });
                     } else {
                         br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-                        data = br.readLine();
+                        data = new StringBuilder(br.readLine());
                         Log.i(TAG, "data error : " + data);
-                        httpCallBack.onError(data);
+                        httpCallBack.onError(data.toString());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -189,19 +192,8 @@ public class AliRtcWebUtils {
 
     private HttpURLConnection getConnection(URL url, String method, String ctype) throws IOException {
         HttpURLConnection conn = null;
-        if ("https".equals(url.getProtocol())) {
-            try {
-                conn = initHttps(url, method);
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (NoSuchProviderException e) {
-                e.printStackTrace();
-            } catch (KeyManagementException e) {
-                e.printStackTrace();
-            }
-        } else {
-            conn = (HttpURLConnection) url.openConnection();
-        }
+
+        conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod(method);
         conn.setAllowUserInteraction(true);
         conn.setInstanceFollowRedirects(true);

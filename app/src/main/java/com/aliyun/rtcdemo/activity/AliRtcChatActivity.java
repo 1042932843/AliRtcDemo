@@ -173,20 +173,21 @@ public class AliRtcChatActivity extends BaseActivity implements View.OnClickList
             //实例化,必须在主线程进行。
             mAliRtcEngine = AliRtcEngine.getInstance(getApplicationContext());
             //设置事件的回调监听
+
             mAliRtcEngine.setRtcEngineEventListener(mEventListener);
             //设置接受通知事件的回调
             mAliRtcEngine.setRtcEngineNotify(mEngineNotify);
             //屏幕方向配置
-            if(android.os.Build.MODEL.equals("Readboy_C15")||android.os.Build.MODEL.equals("Readboy_T90")){//C15摄像头装配问题，一群沙雕估计装反了
+            if(android.os.Build.MODEL.equals("Readboy_C15")||android.os.Build.MODEL.equals("Readboy_T90")||android.os.Build.MODEL.equals("Readboy_G550")){//C15摄像头装配问题
                 mAliRtcEngine.setDeviceOrientationMode(AliRtcEngine.AliRtcOrientationMode.AliRtcOrientationModeLandscapeLeft);
             }else{
                 mAliRtcEngine.setDeviceOrientationMode(AliRtcEngine.AliRtcOrientationMode.AliRtcOrientationModeAuto);
             }
 
             //声音录入配置0-400
-            mAliRtcEngine.setRecordingVolume(100);
+            //mAliRtcEngine.setRecordingVolume(100);
             //声音输出配置0-400
-            mAliRtcEngine.setPlayoutVolume(200);
+            //mAliRtcEngine.setPlayoutVolume(200);
             // 初始化本地视图
             initLocalView();
             //开启预览
